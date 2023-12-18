@@ -15,7 +15,7 @@ RUN apk add openjdk17-jdk
 
 # 
 WORKDIR /purpur
-COPY ./Purpur-1.19.4-1985/purpur.jar .
+COPY ./Purpur-1.19.4-1985/purpur-1.19.4-1985.jar .
 COPY ./settings/server.properties .
 COPY ./settings/eula.txt .
 COPY ./settings/whitelist.json .
@@ -25,7 +25,7 @@ COPY ./settings/ops.json .
 ENV JAVA_XMS_MEMORY="-Xms2G"
 ENV JAVA_XMX_MEMORY="-Xmx2G"
 ENV JAVA_COMMAND_LINE=""
-ENV PURPUR_JAR_FILE="purpur.jar"
+ENV PURPUR_JAR_FILE="purpur-1.19.4-1985.jar"
 ENV PURPUR_COMMAND_LINE="--nogui"
 
 # 
