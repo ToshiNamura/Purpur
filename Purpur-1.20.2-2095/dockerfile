@@ -1,0 +1,33 @@
+# 
+FROM alpine:latest
+LABEL author="ToshiNamura"
+LABEL minecraft.version="1.20.2"
+LABEL purpur.build.id="2095"
+LABEL purpur.build.date="07.12.23, 05:18:52"
+
+# 
+EXPOSE 25565
+VOLUME [ "/purpur" ]
+
+# 
+RUN apk add --no-cache --upgrade bash
+RUN apk add openjdk17-jdk
+
+# 
+WORKDIR /purpur
+COPY ./Purpur-1.20.2-2095/purpur.jar .
+COPY ./settings/server.properties .
+COPY ./settings/eula.txt .
+COPY ./settings/whitelist.json .
+COPY ./settings/ops.json .
+
+#
+ENV JAVA_XMS_MEMORY="-Xms2G"
+ENV JAVA_XMX_MEMORY="-Xmx2G"
+ENV JAVA_COMMAND_LINE=""
+ENV PURPUR_JAR_FILE="purpur.jar"
+ENV PURPUR_COMMAND_LINE="--nogui"
+
+# 
+ADD ./settings/starting.sh /purpur
+CMD [ "bash", "/purpur/starting.sh" ]
